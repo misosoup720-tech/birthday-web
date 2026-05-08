@@ -6,12 +6,15 @@
 
 <meta
   name="viewport"
-  content="width=device-width, initial-scale=1.0, maximum-scale=1.0"
+  content="width=device-width, initial-scale=1.0"
 />
 
 <title>Happy Birthday ✨</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&display=swap" rel="stylesheet">
+<link
+href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&display=swap"
+rel="stylesheet"
+/>
 
 <style>
 
@@ -223,8 +226,6 @@ body{
   padding:12px;
 
   overflow:hidden;
-
-  transform-origin:center;
 }
 
 /* TITLE */
@@ -298,16 +299,7 @@ body{
 
   overflow:hidden;
 
-  cursor:pointer;
-
   border:4px solid rgba(255,255,255,.5);
-
-  transition:.3s;
-}
-
-.photo-frame:hover{
-
-  transform:scale(1.05);
 }
 
 .photo-frame img{
@@ -320,18 +312,12 @@ body{
 
 /* CAKE */
 
-.cake-container{
-  perspective:800px;
-}
-
 .cake{
 
   width:150px;
   height:170px;
 
   position:relative;
-
-  transform-style:preserve-3d;
 
   animation:spin 12s linear infinite;
 }
@@ -366,11 +352,7 @@ body{
   width:160px;
   height:70px;
 
-  background:linear-gradient(
-    180deg,
-    #ff85c8,
-    #ff4da6
-  );
+  background:#ff4da6;
 }
 
 .cake-layer2{
@@ -380,11 +362,7 @@ body{
   width:125px;
   height:60px;
 
-  background:linear-gradient(
-    180deg,
-    #ffb6c1,
-    #ff85c8
-  );
+  background:#ff85c8;
 }
 
 .cake-layer3{
@@ -394,11 +372,7 @@ body{
   width:90px;
   height:50px;
 
-  background:linear-gradient(
-    180deg,
-    #ffc0cb,
-    #ffb6c1
-  );
+  background:#ffc0cb;
 }
 
 .candle{
@@ -412,8 +386,6 @@ body{
 
   width:8px;
   height:32px;
-
-  border-radius:4px;
 
   background:white;
 }
@@ -434,25 +406,20 @@ body{
 
   border-radius:50%;
 
-  background:radial-gradient(
-    circle,
-    #ffff00,
-    #ff6600
-  );
+  background:orange;
 
-  box-shadow:
-    0 0 15px #ff6600;
+  box-shadow:0 0 15px orange;
 
   animation:flicker .3s infinite alternate;
 }
 
 @keyframes flicker{
 
-  0%{
+  from{
     transform:translateX(-50%) scale(1);
   }
 
-  100%{
+  to{
     transform:translateX(-50%) scale(1.2);
   }
 
@@ -484,137 +451,75 @@ body{
 
 /* MUSIC BUTTON */
 
-.music-btn{
+.music-controls{
 
   position:fixed;
 
   right:16px;
   bottom:16px;
 
-  width:55px;
-  height:55px;
+  display:flex;
+  flex-direction:column;
+
+  gap:10px;
+
+  z-index:99999;
+}
+
+.music-btn{
 
   border:none;
 
-  border-radius:50%;
+  border-radius:999px;
+
+  padding:
+    12px
+    18px;
 
   background:rgba(255,255,255,.2);
 
+  backdrop-filter:blur(10px);
+
+  border:1px solid rgba(255,255,255,.3);
+
   color:white;
 
-  font-size:24px;
+  font-size:14px;
 
   cursor:pointer;
 
-  z-index:9999;
-}
-
-/* POPUP */
-
-.img-popup{
-
-  position:fixed;
-
-  inset:0;
-
-  background:rgba(0,0,0,.8);
-
   display:flex;
-
   align-items:center;
-  justify-content:center;
+  gap:8px;
 
-  z-index:999999;
+  box-shadow:
+    0 0 20px rgba(255,105,180,.3);
 }
 
-.img-popup img{
-
-  max-width:90%;
-  max-height:90%;
-
-  border-radius:24px;
+.music-btn:hover{
+  transform:scale(1.05);
 }
 
-#closePopup{
+/* IFRAME */
+
+#bgMusic{
 
   position:absolute;
 
-  top:20px;
-  right:30px;
-
-  font-size:42px;
-
-  color:white;
-
-  cursor:pointer;
-}
-
-/* SPARK */
-
-.click-spark{
-
-  position:fixed;
-
-  pointer-events:none;
-
-  z-index:999999;
-
-  animation:clickSpark .8s forwards;
-}
-
-@keyframes clickSpark{
-
-  0%{
-    opacity:1;
-    transform:scale(1);
-  }
-
-  100%{
-    opacity:0;
-    transform:
-      scale(2)
-      translateY(-40px);
-  }
-
-}
-
-#bgMusic{
   width:0;
   height:0;
+
   opacity:0;
+
+  pointer-events:none;
 }
 
 /* RESPONSIVE */
-
-@media(max-height:850px){
-
-  .birthday-scene{
-    transform:scale(.92);
-  }
-
-}
-
-@media(max-height:700px){
-
-  .birthday-scene{
-    transform:scale(.82);
-  }
-
-}
 
 @media(max-width:768px){
 
   .birthday-scene{
     transform:scale(.9);
-  }
-
-  .photo-frame{
-    width:120px;
-    height:120px;
-  }
-
-  .cake{
-    transform:scale(.72);
   }
 
 }
@@ -658,17 +563,13 @@ body{
 
   <!-- CAKE -->
 
-  <div class="cake-container">
+  <div class="cake">
 
-    <div class="cake">
+    <div class="cake-layer cake-layer1"></div>
+    <div class="cake-layer cake-layer2"></div>
+    <div class="cake-layer cake-layer3"></div>
 
-      <div class="cake-layer cake-layer1"></div>
-      <div class="cake-layer cake-layer2"></div>
-      <div class="cake-layer cake-layer3"></div>
-
-      <div class="candle"></div>
-
-    </div>
+    <div class="candle"></div>
 
   </div>
 
@@ -680,7 +581,6 @@ body{
 
       <img
         src="https://img2.pic.in.th/S__5087235.jpg"
-        alt="birthday photo"
       >
 
     </div>
@@ -693,35 +593,38 @@ body{
 
     <div class="note-section">
 
-      <h3>💌 A Note For You</h3>
+
+ <h3>💌 A Note For You</h3>
 
       <p>
 
         สุขสันต์วันเกิดนะน้องคนเล็ก 🎂💖
+
         <br><br>
 
         ขอให้มีความสุขในทุก ๆ วัน
         ยิ้มเยอะ ๆ สดใสน่ารักแบบนี้ตลอดไป
+        <br><br>
+
+        ขอให้ปีนี้เต็มไปด้วยความรัก
+        ความอบอุ่น
+        และเรื่องดี ๆ เข้ามาเยอะ ๆ
 
         <br><br>
 
         ถ้าวันไหนเหนื่อย
         หรืออยากร้องไห้
-        ก็เดินมาหาพี่ ๆ ได้เสมอนะ
-
-        <br><br>
-
-        ขอให้ปีนี้เต็มไปด้วยความรัก
-        ความอบอุ่น
-        และเรื่องดี ๆ 💖
+        ก็เดินมาหาพี่ ๆ ได้เสมอนะ 💖
 
       </p>
 
       <br>
 
       <h3>
-        LOVE U -- MisoSoup ʕ ꈍᴥꈍʔ ♥
+        💌 LOVE U -- MisoSoup ʕ ꈍᴥꈍʔ ♥ 💌
       </h3>
+
+
 
     </div>
 
@@ -729,32 +632,45 @@ body{
 
 </div>
 
-<!-- POPUP -->
+<!-- MUSIC CONTROLS -->
 
-<div id="imgPopup" class="img-popup hidden">
+<div class="music-controls">
 
-  <span id="closePopup">✕</span>
+  <!-- PLAY BUTTON -->
 
-  <img
-    id="popupImg"
-    src=""
-    alt="popup image"
+  <button
+    id="playMusic"
+    class="music-btn"
   >
+    ▶️ เปิดเพลง
+  </button>
+
+  <!-- MUTE BUTTON -->
+
+  <button
+    id="musicToggle"
+    class="music-btn"
+  >
+
+    <span id="musicIcon">
+      🔊
+    </span>
+
+    <span>
+      WWJ - คำอวยพร (Happy Birthday)
+    </span>
+
+  </button>
 
 </div>
 
-<!-- MUSIC BUTTON -->
-
-<button id="musicToggle" class="music-btn">
-  🔊
-</button>
-
-<!-- MUSIC -->
+<!-- YOUTUBE -->
 
 <iframe
   id="bgMusic"
   src=""
-  allow="autoplay">
+  allow="autoplay"
+  allowfullscreen>
 </iframe>
 
 <script>
@@ -809,10 +725,25 @@ function createParticles(container,count){
 createParticles('particles1',25);
 createParticles('particles2',35);
 
-/* OPEN */
+/* MUSIC */
 
 const iframe =
   document.getElementById('bgMusic');
+
+const playBtn =
+  document.getElementById('playMusic');
+
+const musicBtn =
+  document.getElementById('musicToggle');
+
+const musicIcon =
+  document.getElementById('musicIcon');
+
+let isMuted = false;
+
+let musicStarted = false;
+
+/* OPEN ENVELOPE */
 
 document
 .getElementById('envelopeBtn')
@@ -830,85 +761,58 @@ document
     .classList
     .remove('hidden');
 
-    iframe.src =
-    "https://www.youtube.com/embed/An0fEBn6E2c?autoplay=1&loop=1&playlist=An0fEBn6E2c";
-
   },800);
 
 });
 
-/* POPUP */
+/* PLAY MUSIC */
 
-const photo =
-  document.querySelector('.photo-frame img');
+playBtn.addEventListener('click',()=>{
 
-const popup =
-  document.getElementById('imgPopup');
+  if(musicStarted) return;
 
-const popupImg =
-  document.getElementById('popupImg');
+  iframe.src =
+  "https://www.youtube.com/embed/An0fEBn6E2c?autoplay=1&loop=1&playlist=An0fEBn6E2c&enablejsapi=1";
 
-photo.addEventListener('click',()=>{
-
-  popup.classList.remove('hidden');
-
-  popupImg.src = photo.src;
+  musicStarted = true;
 
 });
 
-document
-.getElementById('closePopup')
-.addEventListener('click',()=>{
+/* MUTE / UNMUTE */
 
-  popup.classList.add('hidden');
+musicBtn.addEventListener('click',()=>{
 
-});
+  if(!musicStarted) return;
 
-/* SPARK */
+  if(!isMuted){
 
-const sparkleSymbols = [
-  '✨',
-  '💖',
-  '🌸'
-];
-
-function createSpark(x,y){
-
-  const spark =
-    document.createElement('div');
-
-  spark.className =
-    'click-spark';
-
-  spark.innerHTML =
-    sparkleSymbols[
-      Math.floor(
-        Math.random()
-        * sparkleSymbols.length
-      )
-    ];
-
-  spark.style.left = x + 'px';
-  spark.style.top = y + 'px';
-
-  document.body.appendChild(spark);
-
-  setTimeout(()=>{
-    spark.remove();
-  },800);
-
-}
-
-document.addEventListener('mousemove',(e)=>{
-
-  if(Math.random() > 0.9){
-
-    createSpark(
-      e.clientX,
-      e.clientY
+    iframe.contentWindow.postMessage(
+      JSON.stringify({
+        event:'command',
+        func:'mute',
+        args:[]
+      }),
+      '*'
     );
 
+    musicIcon.innerHTML = '🔇';
+
+  }else{
+
+    iframe.contentWindow.postMessage(
+      JSON.stringify({
+        event:'command',
+        func:'unMute',
+        args:[]
+      }),
+      '*'
+    );
+
+    musicIcon.innerHTML = '🔊';
+
   }
+
+  isMuted = !isMuted;
 
 });
 
